@@ -9,6 +9,13 @@
         <p>Your Text: {{ text }}</p>
         <p>Classification: {{ classification }}</p>
         <p>Time Taken: {{ time_taken | round(10) }} seconds</p>
+
+        <p>Attention Mask:</p>
+        <div>
+            {% for value in matrix %}
+                <span>{{ value }}</span><br>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

@@ -16,7 +16,10 @@ def classify_text():
     end_time = time.time()
 
     duration = end_time - start_time  # Calculate duration
-    return render_template('result.html', text=input_text, classification=result, time_taken=duration)
+
+    matrix_list = matrix if isinstance(matrix, list) else matrix.tolist()
+
+    return render_template('result.html', text=input_text, classification=result, time_taken=duration, matrix=matrix_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

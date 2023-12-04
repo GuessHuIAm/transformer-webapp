@@ -1,10 +1,22 @@
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
+import json
 
-# Load the model and tokenizer
-model_path = '/emailspam'
+# Assuming 'emailspam' folder is in the current working directory
+# Update the path if 'emailspam' is located elsewhere
+model_path = 'emailspam'
+tokenizer_path = 'emailspam'
+common_tokens_path = 'emailspam/common_tokens.json'
+
+# Load the model
 model = BertForSequenceClassification.from_pretrained(model_path)
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
+
+# Load the tokenizer
+tokenizer = BertTokenizer.from_pretrained(tokenizer_path)
+
+# Load common tokens
+with open(common_tokens_path, 'r') as file:
+    common_tokens = json.load(file)
 
 def create_modified_attention_mask(email, tokenizer, common_tokens, max_length=128):
     # Tokenize the email
@@ -57,27 +69,3 @@ def transformer_api(text):
     # Return both classification and modified attention mask
     return classification_label, mod_attention_mask
 
-sample_spam_email = """
-Subject: Urgent Account Verification Required!
-
-Dear Valued Customer,
-
-We've noticed some unusual activity on your account and believe it may have been accessed by an unauthorized third party. For your security, we've temporarily locked your account.
-
-To restore access, please verify your account information by clicking the link below. This is a mandatory security measure to ensure your account's integrity.
-
-[Secure Verification Link]
-
-Please note, failure to complete this verification within 24 hours of receiving this email will result in your account being permanently closed.
-
-Thank you for your prompt attention to this matter.
-
-Best regards,
-[Your Bank's Name] Security Team
-"""
-
-# Example call to transformer_api with a sample spam email
-classification_result, attention_mask = transformer_api(sample_spam_email)
-
-print("Classification:", classification_result)
-print("Modified Attention Mask:", attention_mask)
