@@ -1,1 +1,2 @@
-emailspam/model.safetensors filter=lfs diff=lfs merge=lfs -text
+masked/model.safetensors filter=lfs diff=lfs merge=lfs -text
+standard/model.safetensors filter=lfs diff=lfs merge=lfs -text

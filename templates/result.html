@@ -5,27 +5,51 @@
     <link rel="stylesheet" href="/static/main.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="header {{ 'green' if classification == 'Ham' else 'red' }}">
-            {{ classification }}
-        </h1>
-        <div class=textbox>{{ text }}</div>
+    <div>
+        <h1>Classification Result</h1>
+        <div class="container">
+            <h1 class="header {{ 'green' if masked_classification == 'Ham' else 'red' }}">
+                {{ masked_classification }}
+            </h1>
+            <div class=textbox>{{ text }}</div>
 
-        <h2>Time Taken</h2>
-        <strong>{{ time_taken | round(2) }} seconds</strong>
+            <h2>Time Taken</h2>
+            <strong>{{ masked_time_taken | round(2) }} seconds</strong>
 
-        <h2>Attention Mask</h2>
-        <div class="attention-mask">
-            {% for bit in matrix %}
-                <div class="attention-bit {{ 'one' if bit == 1 else 'zero' }}"></div>
-            {% endfor %}
-       </div>
+            <h2>Attention Mask</h2>
+            <div class="attention-mask">
+                {% for bit in masked_matrix %}
+                    <div class="attention-bit {{ 'one' if bit == 1 else 'zero' }}"></div>
+                {% endfor %}
+            </div>
+            <div class="legend">
+                Legend
+                <span class="attention-bit one"></span> = 1
+                <span class="attention-bit zero"></span> = 0
+            </div>
+        </div>
+        <div class="container">
+            <h1 class="header {{ 'green' if standard_classification == 'Ham' else 'red' }}">
+                {{ standard_classification }}
+            </h1>
+            <div class=textbox>{{ text }}</div>
 
-       <div class='legend'>
-        Legend
-        <span class="attention-bit one"></span> = 1
-        <span class="attention-bit zero"></span> = 0
-       </div>
+            <h2>Time Taken</h2>
+            <strong>{{ standard_time_taken | round(2) }} seconds</strong>
+
+            <h2>Attention Mask</h2>
+            <div class="attention-mask">
+                {% for bit in standard_matrix %}
+                    <div class="attention-bit {{ 'one' if bit == 1 else 'zero' }}"></div>
+                {% endfor %}
+        </div>
+
+        <div class="legend">
+            Legend
+            <span class="attention-bit one"></span> = 1
+            <span class="attention-bit zero"></span> = 0
+        </div>
+        </div>
     </div>
 </body>
 </html>
