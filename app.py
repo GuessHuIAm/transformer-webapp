@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from .transformer import transformer_api
+from transformer import transformer_api
 import time
 
 app = Flask(__name__)
@@ -17,7 +17,7 @@ def classify_text():
 
     duration = end_time - start_time  # Calculate duration
 
-    matrix_list = matrix if isinstance(matrix, list) else matrix.tolist()
+    matrix_list = matrix 
 
     return render_template('result.html', text=input_text, classification=result, time_taken=duration, matrix=matrix_list)
 

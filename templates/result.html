@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Classification Result</title>
@@ -6,17 +6,23 @@
 </head>
 <body>
     <div class="container">
-        <p>Your Text: {{ text }}</p>
-        <p>Classification: {{ classification }}</p>
-        <p>Time Taken: {{ time_taken | round(10) }} seconds</p>
+        <p>Your Text: <strong>{{ text }}</strong></p>
+        
+        <p>Classification:</p>
+        <div>
+            <!-- Display each item in the classification list -->
+            {% for item in classification %}
+                <span>{{ item }}</span>
+            {% endfor %}
+        </div>
+
+        <p>Time Taken: <strong>{{ time_taken | round(2) }} seconds</strong></p>
 
         <p>Attention Mask:</p>
         <div>
-            {% for value in matrix %}
-                <span>{{ value }}</span><br>
-            {% endfor %}
+            <!-- Display the attention mask as a single line -->
+            <span>{{ matrix }}</span>
         </div>
     </div>
 </body>
 </html>
-
