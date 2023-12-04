@@ -13,6 +13,11 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 textarea {
@@ -21,11 +26,13 @@ textarea {
     border-radius: 4px;
     border: 1px solid #ddd;
     resize: vertical;
+    font-family:'Courier New', Courier, monospace;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    width: 500px;
 }
 
 input[type="submit"] {
@@ -44,4 +51,48 @@ input[type="submit"]:hover {
 
 p {
     margin: 15px 0;
+}
+
+.textbox {
+    max-height: 300px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    white-space: pre-wrap;
+    border-radius: 10px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.attention-mask {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.attention-bit {
+    width: 10px;
+    height: 10px;
+    margin: 2px;
+}
+.zero {
+    background-color: #e4d8d8;
+}
+.one {
+    background-color: #000000;
+}
+
+.legend {
+    display: inline-block;
+}
+
+.legend span {
+    display: inline-block;
 }

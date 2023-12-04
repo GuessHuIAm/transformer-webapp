@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Classification Result</title>
@@ -6,23 +6,26 @@
 </head>
 <body>
     <div class="container">
-        <p>Your Text: <strong>{{ text }}</strong></p>
-        
-        <p>Classification:</p>
-        <div>
-            <!-- Display each item in the classification list -->
-            {% for item in classification %}
-                <span>{{ item }}</span>
+        <h1 class="header {{ 'green' if classification == 'Ham' else 'red' }}">
+            {{ classification }}
+        </h1>
+        <div class=textbox>{{ text }}</div>
+
+        <h2>Time Taken</h2>
+        <strong>{{ time_taken | round(2) }} seconds</strong>
+
+        <h2>Attention Mask</h2>
+        <div class="attention-mask">
+            {% for bit in matrix %}
+                <div class="attention-bit {{ 'one' if bit == 1 else 'zero' }}"></div>
             {% endfor %}
-        </div>
+       </div>
 
-        <p>Time Taken: <strong>{{ time_taken | round(2) }} seconds</strong></p>
-
-        <p>Attention Mask:</p>
-        <div>
-            <!-- Display the attention mask as a single line -->
-            <span>{{ matrix }}</span>
-        </div>
+       <div class='legend'>
+        Legend
+        <span class="attention-bit one"></span> = 1
+        <span class="attention-bit zero"></span> = 0
+       </div>
     </div>
 </body>
 </html>
